@@ -8,7 +8,7 @@
  date: '2022-06-09'
 -modification_date: '2023-02-17'
 +modification_date: '2026-10-23'
- author: Northwind Detection Engineering
+ author: Ashgrove Detection Engineering
  status: production
 @@ -10,5 +10,5 @@
  logsource: webserver
@@ -35,7 +35,7 @@
    - https://attack.mitre.org/techniques/T1505/003/
 +  - https://community.progress.com/s/article/MOVEit-Transfer-Critical-Vulnerability-31May2023
 +  - https://cloud.google.com/blog/topics/threat-intelligence/zero-day-moveit-data-theft
- author: Northwind Detection Engineering
+ author: Ashgrove Detection Engineering
  date: 2022-03-14
 +modified: 2026-10-23
  tags:

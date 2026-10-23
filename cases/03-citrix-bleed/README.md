@@ -19,7 +19,7 @@ come from `py scripts/build_cases.py`.
 
 ## Our fictional setup
 
-One NetScaler Gateway on `gw01.nw.example`, version 13.1-48.47 (fixed in 13.1-49.15). The SIEM gets appliance syslog
+One NetScaler Gateway on `gw01.ag.example`, version 13.1-48.47 (fixed in 13.1-49.15). The SIEM gets appliance syslog
 and firewall logs. There is no WAF and no reverse proxy in front of it.
 
 ## The rule before

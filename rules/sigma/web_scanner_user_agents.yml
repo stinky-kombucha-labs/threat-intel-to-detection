@@ -4,7 +4,7 @@ status: stable
 description: Detects well-known scanner user agents in web server logs.
 references:
   - https://attack.mitre.org/techniques/T1595/002/
-author: Northwind Detection Engineering
+author: Ashgrove Detection Engineering
 date: 2022-04-20
 tags:
   - attack.reconnaissance

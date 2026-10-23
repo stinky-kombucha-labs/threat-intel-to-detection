@@ -17,8 +17,8 @@ rules:
   generated_dir: rules/generated
 
 email:
-  to: detection-engineering@northwind.example
-  from: intel-to-rule@northwind.example
+  to: detection-engineering@ashgrove.example
+  from: intel-to-rule@ashgrove.example
 
 pr:
   base: main

@@ -1,5 +1,5 @@
 Subject: [Detection] CVE-2023-46805, CVE-2024-21887 | Not covered, rule change proposed | Ivanti Connect Secure
-To: detection-engineering@northwind.example
+To: detection-engineering@ashgrove.example
 
 ## What was found
 - Active Exploitation of Two Zero-Day Vulnerabilities in Ivanti Connect Secure VPN
@@ -9,7 +9,7 @@ To: detection-engineering@northwind.example
 - Volexity found active exploitation of two chained zero-days in Ivanti Connect Secure (formerly Pulse Connect Secure). CVE-2023-46805 is an authentication bypass and CVE-2024-21887 is a command injection, together giving unauthenticated remote code execution. Suspicious activity on the appliance goes back to 3 December 2023. The attacker wiped logs and disabled logging, backdoored the legitimate compcheckresult.cgi and modified a JavaScript file to capture credentials. Requests chain paths under /api/v1/totp/user-backup-code/ with traversal to reach system maintenance and license endpoints.
 
 ## Why it matters to us
-- Ivanti Connect Secure 22.3R1 on vpn01.nw.example, vpn02.nw.example (internet, high criticality). Version is in the affected range.
+- Ivanti Connect Secure 22.3R1 on vpn01.ag.example, vpn02.ag.example (internet, high criticality). Version is in the affected range.
 
 ## Current coverage
 Verdict: Not covered, rule change proposed.
@@ -32,7 +32,7 @@ Nothing is applied to the SIEM. Review the diff and merge the pull request if it
  date: '2021-05-04'
 -modification_date: '2022-01-20'
 +modification_date: '2026-10-23'
- author: Northwind Detection Engineering
+ author: Ashgrove Detection Engineering
  status: production
 @@ -10,5 +10,5 @@
  logsource: webserver

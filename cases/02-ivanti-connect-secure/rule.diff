@@ -8,7 +8,7 @@
  date: '2021-05-04'
 -modification_date: '2022-01-20'
 +modification_date: '2026-10-23'
- author: Northwind Detection Engineering
+ author: Ashgrove Detection Engineering
  status: production
 @@ -10,5 +10,5 @@
  logsource: webserver

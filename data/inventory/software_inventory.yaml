@@ -1,7 +1,7 @@
-# Fictional inventory for "Northwind Logistics", a made-up company. No real data.
+# Fictional inventory for "Ashgrove Manufacturing", a made-up company. No real data.
 # log_sources lists the log categories that actually reach the SIEM for each asset.
 # Categories: webserver, proxy, file_event, process_creation, vpn, firewall, auth.
-company: Northwind Logistics
+company: Ashgrove Manufacturing
 assets:
   - id: moveit_transfer
     vendor: Progress
@@ -10,7 +10,7 @@ assets:
     aliases: [moveit]
     exposure: internet
     criticality: high
-    hosts: [mft01.nw.example]
+    hosts: [mft01.ag.example]
     log_sources: [webserver, file_event, process_creation]
 
   - id: ivanti_connect_secure
@@ -20,7 +20,7 @@ assets:
     aliases: [Connect Secure, Pulse Connect Secure, Pulse Secure]
     exposure: internet
     criticality: high
-    hosts: [vpn01.nw.example, vpn02.nw.example]
+    hosts: [vpn01.ag.example, vpn02.ag.example]
     log_sources: [webserver, vpn]
 
   - id: citrix_netscaler_gateway
@@ -30,7 +30,7 @@ assets:
     aliases: [NetScaler ADC, Citrix ADC, Citrix Gateway]
     exposure: internet
     criticality: high
-    hosts: [gw01.nw.example]
+    hosts: [gw01.ag.example]
     # Appliance syslog only. No WAF or reverse proxy logs, so HTTP requests to the appliance are invisible.
     log_sources: [vpn, firewall]
 
@@ -41,7 +41,7 @@ assets:
     aliases: [Microsoft Exchange]
     exposure: internet
     criticality: critical
-    hosts: [mail01.nw.example]
+    hosts: [mail01.ag.example]
     log_sources: [webserver, process_creation, file_event, auth]
 
   - id: tomcat
@@ -51,7 +51,7 @@ assets:
     aliases: [Tomcat]
     exposure: internal
     criticality: medium
-    hosts: [app03.nw.example, app04.nw.example]
+    hosts: [app03.ag.example, app04.ag.example]
     log_sources: [webserver, process_creation]
 
   - id: confluence
@@ -61,7 +61,7 @@ assets:
     aliases: [Confluence]
     exposure: internal
     criticality: medium
-    hosts: [wiki01.nw.example]
+    hosts: [wiki01.ag.example]
     log_sources: [webserver]
 
   - id: veeam
@@ -71,7 +71,7 @@ assets:
     aliases: [Veeam]
     exposure: internal
     criticality: high
-    hosts: [bkp01.nw.example]
+    hosts: [bkp01.ag.example]
     log_sources: [process_creation, auth]
 
   - id: panos
@@ -81,5 +81,5 @@ assets:
     aliases: [GlobalProtect]
     exposure: internet
     criticality: high
-    hosts: [fw01.nw.example]
+    hosts: [fw01.ag.example]
     log_sources: [firewall, vpn]

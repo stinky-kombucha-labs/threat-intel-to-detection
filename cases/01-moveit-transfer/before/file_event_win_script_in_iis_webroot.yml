@@ -4,7 +4,7 @@ status: stable
 description: Detects creation of server-side script files in the default IIS web root, a common web shell drop location.
 references:
   - https://attack.mitre.org/techniques/T1505/003/
-author: Northwind Detection Engineering
+author: Ashgrove Detection Engineering
 date: 2022-03-14
 tags:
   - attack.persistence

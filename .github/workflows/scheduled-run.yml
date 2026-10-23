@@ -1,10 +1,11 @@
 name: scheduled-run
 
-# Runs the pipeline daily and opens one pull request per new finding.
-# The SIEM is not touched. Merging a pull request is a human decision.
+# Opens one pull request per new finding. The SIEM is not touched. Merging is a human decision.
+# Manual-only for now: the project is a demo that runs on sample data.
+# To run it daily against live sources, uncomment the schedule block.
 on:
-  schedule:
-    - cron: "17 5 * * *"
+  # schedule:
+  #   - cron: "17 5 * * *"
   workflow_dispatch:
 
 permissions:

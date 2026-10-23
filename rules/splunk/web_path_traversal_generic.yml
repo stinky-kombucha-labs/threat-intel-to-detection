@@ -2,7 +2,7 @@ name: Path Traversal Sequences in Request URL
 id: a13f6d82-0c5e-4b79-9e27-d8c4b0f1a359
 version: 2
 date: '2022-08-01'
-author: Northwind Detection Engineering
+author: Ashgrove Detection Engineering
 status: production
 type: Anomaly
 description: Detects directory traversal sequences in web request URLs.

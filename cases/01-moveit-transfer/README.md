@@ -16,7 +16,7 @@ The attack facts come from the sources linked below. Everything under `before/`,
 
 ## Our fictional setup
 
-Northwind runs MOVEit Transfer 2022.1.3 on `mft01.nw.example`, exposed to the internet (version 2022.1.5 fixed it).
+Ashgrove runs MOVEit Transfer 2022.1.3 on `mft01.ag.example`, exposed to the internet (version 2022.1.5 fixed it).
 The SIEM receives IIS logs and Sysmon file events from that host.
 
 ## The rules before

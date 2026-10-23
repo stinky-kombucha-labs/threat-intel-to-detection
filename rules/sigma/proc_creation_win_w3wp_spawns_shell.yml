@@ -4,7 +4,7 @@ status: stable
 description: Detects cmd.exe or PowerShell started by the IIS worker process, which indicates web shell activity.
 references:
   - https://attack.mitre.org/techniques/T1505/003/
-author: Northwind Detection Engineering
+author: Ashgrove Detection Engineering
 date: 2022-03-14
 tags:
   - attack.persistence

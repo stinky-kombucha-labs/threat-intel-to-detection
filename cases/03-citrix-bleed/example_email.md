@@ -1,5 +1,5 @@
 Subject: [Detection] CVE-2023-4966 | Not covered, rule change proposed | NetScaler Gateway
-To: detection-engineering@northwind.example
+To: detection-engineering@ashgrove.example
 
 ## What was found
 - Investigation of Session Hijacking via Citrix NetScaler ADC and Gateway Vulnerability (CVE-2023-4966)
@@ -9,7 +9,7 @@ To: detection-engineering@northwind.example
 - Citrix released a bulletin on 10 October 2023 for CVE-2023-4966 in NetScaler ADC and NetScaler Gateway. Mandiant saw zero-day exploitation from late August 2023. A GET request to /oauth/idp/.well-known/openid-configuration with an oversized HTTP Host header makes the appliance return memory contents, which can include a valid AAA session cookie. Session takeover bypasses passwords and multi-factor authentication. The web server on the appliance does not record requests to this endpoint, so evidence comes only from a WAF or other device that logs HTTP requests to the appliance.
 
 ## Why it matters to us
-- NetScaler Gateway 13.1-48.47 on gw01.nw.example (internet, high criticality). Version is in the affected range.
+- NetScaler Gateway 13.1-48.47 on gw01.ag.example (internet, high criticality). Version is in the affected range.
 
 ## Current coverage
 Verdict: Not covered, rule change proposed.
@@ -17,7 +17,7 @@ Verdict: Not covered, rule change proposed.
 Related rules reviewed: Citrix NetScaler Known Exploit Paths; Path Traversal Sequences in Request URL; Pulse Secure and Ivanti Connect Secure Known Exploit Paths
 
 ## Log source gaps
-- NetScaler Gateway (gw01.nw.example) has no proxy or webserver logs in the SIEM, so a rule on 'uri_long_host' indicators cannot fire
+- NetScaler Gateway (gw01.ag.example) has no proxy or webserver logs in the SIEM, so a rule on 'uri_long_host' indicators cannot fire
 
 ## Proposed change (pull request: not opened yet)
 Nothing is applied to the SIEM. Review the diff and merge the pull request if it looks right.
@@ -41,7 +41,7 @@ Nothing is applied to the SIEM. Review the diff and merge the pull request if it
 +  | eval host_length=len(http_host)
 +  | where host_length>=150
 +  | stats count min(_time) as firstTime max(_time) as lastTime by src dest url host_length
-+how_to_implement: Needs the proxy log source in Splunk. Scope the saved search to gw01.nw.example.
++how_to_implement: Needs the proxy log source in Splunk. Scope the saved search to gw01.ag.example.
 +known_false_positives: Exposure-management scanners that send oversized Host headers; Normal OpenID discovery requests carry a short Host header, so only long values are suspicious
 +references:
 +  - https://www.assetnote.io/resources/research/citrix-bleed-leaking-session-tokens-with-cve-2023-4966

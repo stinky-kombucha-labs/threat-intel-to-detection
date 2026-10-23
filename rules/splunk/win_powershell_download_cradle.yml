@@ -3,7 +3,7 @@ id: b72e4a09-9d1c-4f58-83a6-0c6d2f8e1b97
 version: 4
 date: '2022-02-11'
 modification_date: '2023-09-05'
-author: Northwind Detection Engineering
+author: Ashgrove Detection Engineering
 status: production
 type: Anomaly
 description: Detects PowerShell command lines that download and run remote content.

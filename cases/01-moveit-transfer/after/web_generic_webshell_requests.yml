@@ -3,7 +3,7 @@ id: 5e0b9a41-7d2c-4a6f-8c13-b4f7e1d90a68
 version: 4
 date: '2022-06-09'
 modification_date: '2026-10-23'
-author: Northwind Detection Engineering
+author: Ashgrove Detection Engineering
 status: production
 type: TTP
 description: Detects HTTP requests to file names that are commonly used by public web shells.

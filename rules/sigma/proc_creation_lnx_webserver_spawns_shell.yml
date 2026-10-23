@@ -4,7 +4,7 @@ status: test
 description: Detects a shell started by a web server or Java application server process on Linux.
 references:
   - https://attack.mitre.org/techniques/T1505/003/
-author: Northwind Detection Engineering
+author: Ashgrove Detection Engineering
 date: 2022-05-02
 tags:
   - attack.persistence

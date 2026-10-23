@@ -1,5 +1,5 @@
 Subject: [Detection] CVE-2023-34362 | Not covered, rule change proposed | MOVEit Transfer
-To: detection-engineering@northwind.example
+To: detection-engineering@ashgrove.example
 
 ## What was found
 - Zero-Day Vulnerability in MOVEit Transfer Exploited for Data Theft
@@ -9,7 +9,7 @@ To: detection-engineering@northwind.example
 - Mandiant saw wide exploitation of a zero-day in MOVEit Transfer, announced by Progress on 31 May 2023 as CVE-2023-34362. The earliest evidence of exploitation is 27 May 2023. Attackers deployed the LEMURLOOT web shell under names that imitate the legitimate human.aspx, seen as human2.aspx and _human2.aspx in the MOVEit Transfer web root. POST requests to guestaccess.aspx before web shell use point to SQL injection. In some cases data theft happened minutes after the web shell was placed.
 
 ## Why it matters to us
-- MOVEit Transfer 2022.1.3 on mft01.nw.example (internet, high criticality). Version is in the affected range.
+- MOVEit Transfer 2022.1.3 on mft01.ag.example (internet, high criticality). Version is in the affected range.
 
 ## Current coverage
 Verdict: Not covered, rule change proposed.
@@ -34,7 +34,7 @@ Nothing is applied to the SIEM. Review the diff and merge the pull request if it
  date: '2022-06-09'
 -modification_date: '2023-02-17'
 +modification_date: '2026-10-23'
- author: Northwind Detection Engineering
+ author: Ashgrove Detection Engineering
  status: production
 @@ -10,5 +10,5 @@
  logsource: webserver
@@ -64,7 +64,7 @@ Nothing is applied to the SIEM. Review the diff and merge the pull request if it
    - https://attack.mitre.org/techniques/T1505/003/
 +  - https://community.progress.com/s/article/MOVEit-Transfer-Critical-Vulnerability-31May2023
 +  - https://cloud.google.com/blog/topics/threat-intelligence/zero-day-moveit-data-theft
- author: Northwind Detection Engineering
+ author: Ashgrove Detection Engineering
  date: 2022-03-14
 +modified: 2026-10-23
  tags:
