@@ -1,0 +1,30 @@
+title: Server-Side Script File Created in Default IIS Web Root
+id: 2b7f4c3e-6a1d-4f0e-9c58-3d1a7e92b410
+status: stable
+description: Detects creation of server-side script files in the default IIS web root, a common web shell drop location.
+references:
+  - https://attack.mitre.org/techniques/T1505/003/
+author: Northwind Detection Engineering
+date: 2022-03-14
+tags:
+  - attack.persistence
+  - attack.t1505.003
+  - product.windows_iis
+logsource:
+  category: file_event
+  product: windows
+detection:
+  selection:
+    TargetFilename|contains:
+      - '\inetpub\wwwroot\'
+    TargetFilename|endswith:
+      - '.aspx'
+      - '.ashx'
+      - '.asmx'
+  filter_deploy:
+    Image|endswith: '\msdeploy.exe'
+  condition: selection and not filter_deploy
+falsepositives:
+  - Web application deployments
+  - Administrators publishing new pages
+level: high

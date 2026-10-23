@@ -1,0 +1,1 @@
+(TargetFilename:*\\inetpub\\wwwroot\\* AND (TargetFilename:(*.aspx OR *.ashx OR *.asmx))) AND (NOT Image:*\\msdeploy.exe)

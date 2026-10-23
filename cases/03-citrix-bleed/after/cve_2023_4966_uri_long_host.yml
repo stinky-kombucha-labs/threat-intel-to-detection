@@ -1,0 +1,28 @@
+name: CVE-2023-4966 NetScaler Gateway - Oversized Host Header
+id: 9b96fe13-78e8-5f3b-9b66-12f21658c0eb
+version: 1
+date: '2026-10-23'
+author: intel-to-rule (draft, requires analyst review)
+status: experimental
+type: TTP
+description: Detects oversized host header linked to CVE-2023-4966. Draft built from public reporting, requires analyst review before use.
+logsource: proxy
+search: |-
+  index=proxy url="*/oauth/idp/.well-known/openid-configuration*"
+  | eval host_length=len(http_host)
+  | where host_length>=150
+  | stats count min(_time) as firstTime max(_time) as lastTime by src dest url host_length
+how_to_implement: Needs the proxy log source in Splunk. Scope the saved search to gw01.nw.example.
+known_false_positives: Exposure-management scanners that send oversized Host headers; Normal OpenID discovery requests carry a short Host header, so only long values are suspicious
+references:
+  - https://www.assetnote.io/resources/research/citrix-bleed-leaking-session-tokens-with-cve-2023-4966
+  - https://support.citrix.com/article/CTX579459/netscaler-adc-and-netscaler-gateway-security-bulletin-for-cve20234966-and-cve20234967
+  - https://cloud.google.com/blog/topics/threat-intelligence/session-hijacking-citrix-cve-2023-4966
+cve:
+  - CVE-2023-4966
+mitre_attack_id:
+  - T1190
+  - T1550.004
+inventory_products:
+  - netscaler_gateway
+level: high

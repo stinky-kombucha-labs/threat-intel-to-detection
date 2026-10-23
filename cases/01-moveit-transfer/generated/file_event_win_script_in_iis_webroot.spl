@@ -1,0 +1,1 @@
+TargetFilename IN ("*\\inetpub\\wwwroot\\*", "*\\MOVEit Transfer\\wwwroot\\*", "*\\MOVEitTransfer\\wwwroot\\*") TargetFilename IN ("*.aspx", "*.ashx", "*.asmx") NOT Image="*\\msdeploy.exe"

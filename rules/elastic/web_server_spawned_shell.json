@@ -1,0 +1,40 @@
+{
+  "name": "Web Server Process Spawned a Shell",
+  "rule_id": "d0f5b2c9-4e17-4a83-9b6d-1c8a7e3f5092",
+  "description": "Detects a command shell started by a web server or application server process.",
+  "type": "eql",
+  "language": "eql",
+  "index": [
+    "logs-*",
+    "winlogbeat-*",
+    "auditbeat-*"
+  ],
+  "query": "process where event.type == \"start\" and process.parent.name : (\"w3wp.exe\", \"httpd\", \"nginx\", \"java\") and process.name : (\"cmd.exe\", \"powershell.exe\", \"sh\", \"bash\")",
+  "risk_score": 73,
+  "severity": "high",
+  "tags": [
+    "Use Case: Threat Detection",
+    "Logsource: process_creation"
+  ],
+  "threat": [
+    {
+      "framework": "MITRE ATT&CK",
+      "technique": [
+        {
+          "id": "T1505.003",
+          "reference": "https://attack.mitre.org/techniques/T1505/003/"
+        }
+      ]
+    }
+  ],
+  "false_positives": [
+    "Application health check scripts"
+  ],
+  "references": [
+    "https://attack.mitre.org/techniques/T1505/003/"
+  ],
+  "author": [
+    "Northwind Detection Engineering"
+  ],
+  "version": 1
+}

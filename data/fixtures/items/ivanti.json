@@ -1,0 +1,29 @@
+{
+  "_note": "raw is a short paraphrase of the cited public report. recorded_extraction is what the LLM extraction step returns for it, saved so demos run offline.",
+  "raw": {
+    "source": "feed:volexity",
+    "id": "volexity-ivanti-2024-01-10",
+    "title": "Active Exploitation of Two Zero-Day Vulnerabilities in Ivanti Connect Secure VPN",
+    "url": "https://www.volexity.com/blog/2024/01/10/active-exploitation-of-two-zero-day-vulnerabilities-in-ivanti-connect-secure-vpn/",
+    "published": "2024-01-10",
+    "text": "Volexity found active exploitation of two chained zero-days in Ivanti Connect Secure (formerly Pulse Connect Secure). CVE-2023-46805 is an authentication bypass and CVE-2024-21887 is a command injection, together giving unauthenticated remote code execution. Suspicious activity on the appliance goes back to 3 December 2023. The attacker wiped logs and disabled logging, backdoored the legitimate compcheckresult.cgi and modified a JavaScript file to capture credentials. Requests chain paths under /api/v1/totp/user-backup-code/ with traversal to reach system maintenance and license endpoints."
+  },
+  "recorded_extraction": {
+    "cves": ["CVE-2023-46805", "CVE-2024-21887"],
+    "products": ["Ivanti Connect Secure", "Pulse Connect Secure"],
+    "affected": [
+      {"product": "Ivanti Connect Secure", "introduced": "9.0", "fixed": ""}
+    ],
+    "iocs": {
+      "uri": [
+        "/api/v1/totp/user-backup-code/../../system/maintenance/archiving/cloud-server-test-connection",
+        "/api/v1/totp/user-backup-code/../../license/keys-status/"
+      ]
+    },
+    "techniques": ["T1190"],
+    "first_exploited": "2023-12-03",
+    "references": [
+      "https://research.splunk.com/web/1f32a7e0-a060-4545-b7de-73fcf9ad536e/"
+    ]
+  }
+}

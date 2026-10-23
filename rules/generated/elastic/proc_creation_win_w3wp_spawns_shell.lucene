@@ -1,0 +1,1 @@
+ParentImage:*\\w3wp.exe AND (Image:(*\\cmd.exe OR *\\powershell.exe OR *\\pwsh.exe))

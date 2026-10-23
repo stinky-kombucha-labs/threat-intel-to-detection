@@ -1,0 +1,1 @@
+"cs-user-agent" IN ("*sqlmap*", "*nikto*", "*nuclei*", "*masscan*")

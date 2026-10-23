@@ -1,0 +1,54 @@
+--- a/rules/splunk/web_generic_webshell_requests.yml
++++ b/rules/splunk/web_generic_webshell_requests.yml
+@@ -1,7 +1,7 @@
+ name: Generic Web Shell Requests
+ id: 5e0b9a41-7d2c-4a6f-8c13-b4f7e1d90a68
+-version: 3
++version: 4
+ date: '2022-06-09'
+-modification_date: '2023-02-17'
++modification_date: '2026-10-23'
+ author: Northwind Detection Engineering
+ status: production
+@@ -10,5 +10,5 @@
+ logsource: webserver
+ search: |-
+-  | tstats count min(_time) as firstTime max(_time) as lastTime from datamodel=Web where Web.url IN ("*/cmd.aspx*", "*/shell.aspx*", "*/c99.php*", "*/r57.php*", "*/b374k.php*", "*/wso.php*") by Web.src Web.dest Web.http_method Web.url Web.status
++  | tstats count min(_time) as firstTime max(_time) as lastTime from datamodel=Web where Web.url IN ("*/cmd.aspx*", "*/shell.aspx*", "*/c99.php*", "*/r57.php*", "*/b374k.php*", "*/wso.php*", "*/human2.aspx*", "*/_human2.aspx*") by Web.src Web.dest Web.http_method Web.url Web.status
+   | `drop_dm_object_name("Web")`
+ how_to_implement: Needs the Web data model populated from IIS, Apache or Nginx logs.
+@@ -16,5 +16,8 @@
+ references:
+   - https://attack.mitre.org/techniques/T1505/003/
+-cve: []
++  - https://community.progress.com/s/article/MOVEit-Transfer-Critical-Vulnerability-31May2023
++  - https://cloud.google.com/blog/topics/threat-intelligence/zero-day-moveit-data-theft
++cve:
++  - CVE-2023-34362
+ mitre_attack_id:
+   - T1505.003
+
+--- a/rules/sigma/file_event_win_script_in_iis_webroot.yml
++++ b/rules/sigma/file_event_win_script_in_iis_webroot.yml
+@@ -5,10 +5,14 @@
+ references:
+   - https://attack.mitre.org/techniques/T1505/003/
++  - https://community.progress.com/s/article/MOVEit-Transfer-Critical-Vulnerability-31May2023
++  - https://cloud.google.com/blog/topics/threat-intelligence/zero-day-moveit-data-theft
+ author: Northwind Detection Engineering
+ date: 2022-03-14
++modified: 2026-10-23
+ tags:
+   - attack.persistence
+   - attack.t1505.003
+   - product.windows_iis
++  - cve.2023-34362
+ logsource:
+   category: file_event
+@@ -18,4 +22,6 @@
+     TargetFilename|contains:
+       - '\inetpub\wwwroot\'
++      - '\MOVEit Transfer\wwwroot\'
++      - '\MOVEitTransfer\wwwroot\'
+     TargetFilename|endswith:
+       - '.aspx'

@@ -1,0 +1,22 @@
+name: Generic Web Shell Requests
+id: 5e0b9a41-7d2c-4a6f-8c13-b4f7e1d90a68
+version: 3
+date: '2022-06-09'
+modification_date: '2023-02-17'
+author: Northwind Detection Engineering
+status: production
+type: TTP
+description: Detects HTTP requests to file names that are commonly used by public web shells.
+logsource: webserver
+search: |-
+  | tstats count min(_time) as firstTime max(_time) as lastTime from datamodel=Web where Web.url IN ("*/cmd.aspx*", "*/shell.aspx*", "*/c99.php*", "*/r57.php*", "*/b374k.php*", "*/wso.php*") by Web.src Web.dest Web.http_method Web.url Web.status
+  | `drop_dm_object_name("Web")`
+how_to_implement: Needs the Web data model populated from IIS, Apache or Nginx logs.
+known_false_positives: Penetration tests that upload sample web shells.
+references:
+  - https://attack.mitre.org/techniques/T1505/003/
+cve: []
+mitre_attack_id:
+  - T1505.003
+inventory_products: []
+level: high

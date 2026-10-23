@@ -1,0 +1,39 @@
+{
+  "name": "Web Shell Request Patterns",
+  "rule_id": "6a4d1e83-2b9f-4c07-a5e8-7f3c0d9b1a24",
+  "description": "Detects requests to file names commonly used by public web shells.",
+  "type": "eql",
+  "language": "eql",
+  "index": [
+    "logs-*",
+    "filebeat-*"
+  ],
+  "query": "any where url.original : (\"*/cmd.aspx*\", \"*/shell.jsp*\", \"*/c99.php*\", \"*/wso.php*\")",
+  "risk_score": 73,
+  "severity": "high",
+  "tags": [
+    "Use Case: Threat Detection",
+    "Logsource: webserver"
+  ],
+  "threat": [
+    {
+      "framework": "MITRE ATT&CK",
+      "technique": [
+        {
+          "id": "T1505.003",
+          "reference": "https://attack.mitre.org/techniques/T1505/003/"
+        }
+      ]
+    }
+  ],
+  "false_positives": [
+    "Penetration tests that upload sample web shells"
+  ],
+  "references": [
+    "https://attack.mitre.org/techniques/T1505/003/"
+  ],
+  "author": [
+    "Northwind Detection Engineering"
+  ],
+  "version": 2
+}

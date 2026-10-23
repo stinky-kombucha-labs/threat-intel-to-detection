@@ -1,0 +1,1 @@
+cs-user-agent:(*sqlmap* OR *nikto* OR *nuclei* OR *masscan*)

@@ -1,0 +1,22 @@
+name: PowerShell Download Cradle
+id: b72e4a09-9d1c-4f58-83a6-0c6d2f8e1b97
+version: 4
+date: '2022-02-11'
+modification_date: '2023-09-05'
+author: Northwind Detection Engineering
+status: production
+type: Anomaly
+description: Detects PowerShell command lines that download and run remote content.
+logsource: process_creation
+search: |-
+  index=sysmon EventCode=1 CommandLine IN ("*DownloadString(*", "*DownloadFile(*", "*Invoke-WebRequest*", "*iwr *", "*Net.WebClient*")
+  | stats count min(_time) as firstTime max(_time) as lastTime by host ParentImage Image CommandLine
+how_to_implement: Needs Sysmon process creation events (EventCode 1) in the sysmon index.
+known_false_positives: Software deployment scripts and admin tooling.
+references:
+  - https://attack.mitre.org/techniques/T1059/001/
+cve: []
+mitre_attack_id:
+  - T1059.001
+inventory_products: []
+level: medium

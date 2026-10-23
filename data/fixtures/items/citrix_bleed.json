@@ -1,0 +1,28 @@
+{
+  "_note": "raw is a short paraphrase of the cited public report. recorded_extraction is what the LLM extraction step returns for it, saved so demos run offline.",
+  "raw": {
+    "source": "feed:google-threat-intel",
+    "id": "mandiant-citrix-bleed-2023-10-31",
+    "title": "Investigation of Session Hijacking via Citrix NetScaler ADC and Gateway Vulnerability (CVE-2023-4966)",
+    "url": "https://cloud.google.com/blog/topics/threat-intelligence/session-hijacking-citrix-cve-2023-4966",
+    "published": "2023-10-31",
+    "text": "Citrix released a bulletin on 10 October 2023 for CVE-2023-4966 in NetScaler ADC and NetScaler Gateway. Mandiant saw zero-day exploitation from late August 2023. A GET request to /oauth/idp/.well-known/openid-configuration with an oversized HTTP Host header makes the appliance return memory contents, which can include a valid AAA session cookie. Session takeover bypasses passwords and multi-factor authentication. The web server on the appliance does not record requests to this endpoint, so evidence comes only from a WAF or other device that logs HTTP requests to the appliance."
+  },
+  "recorded_extraction": {
+    "cves": ["CVE-2023-4966"],
+    "products": ["NetScaler Gateway", "NetScaler ADC"],
+    "affected": [
+      {"product": "NetScaler Gateway", "introduced": "13.1", "fixed": "13.1-49.15"},
+      {"product": "NetScaler Gateway", "introduced": "13.0", "fixed": "13.0-92.19"}
+    ],
+    "conditional": [
+      {"kind": "uri_long_host", "uri": "/oauth/idp/.well-known/openid-configuration", "host_min_length": 150}
+    ],
+    "techniques": ["T1190", "T1550.004"],
+    "first_exploited": "2023-08",
+    "references": [
+      "https://www.assetnote.io/resources/research/citrix-bleed-leaking-session-tokens-with-cve-2023-4966",
+      "https://support.citrix.com/article/CTX579459/netscaler-adc-and-netscaler-gateway-security-bulletin-for-cve20234966-and-cve20234967"
+    ]
+  }
+}

@@ -1,0 +1,28 @@
+title: Linux Web Server Process Spawning a Shell
+id: 91d3b6f2-5e7a-4c10-8a44-0b2e9d7c3f55
+status: test
+description: Detects a shell started by a web server or Java application server process on Linux.
+references:
+  - https://attack.mitre.org/techniques/T1505/003/
+author: Northwind Detection Engineering
+date: 2022-05-02
+tags:
+  - attack.persistence
+  - attack.t1505.003
+  - product.apache_tomcat
+logsource:
+  category: process_creation
+  product: linux
+detection:
+  selection:
+    ParentImage|endswith:
+      - '/httpd'
+      - '/nginx'
+      - '/java'
+    Image|endswith:
+      - '/sh'
+      - '/bash'
+  condition: selection
+falsepositives:
+  - Application health check scripts
+level: medium

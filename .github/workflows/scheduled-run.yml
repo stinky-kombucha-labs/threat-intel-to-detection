@@ -1,0 +1,38 @@
+name: scheduled-run
+
+# Runs the pipeline daily and opens one pull request per new finding.
+# The SIEM is not touched. Merging a pull request is a human decision.
+on:
+  schedule:
+    - cron: "17 5 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -e ".[sigma,llm]"
+      - name: Collect, analyse and open pull requests
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NVD_API_KEY: ${{ secrets.NVD_API_KEY }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          SMTP_HOST: ${{ secrets.SMTP_HOST }}
+          SMTP_USER: ${{ secrets.SMTP_USER }}
+          SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
+        run: |
+          git config user.name "intel-to-rule"
+          git config user.email "intel-to-rule@users.noreply.github.com"
+          python -m intel_to_rule run --since 2 --llm --open-pr --send-email
+      - uses: actions/upload-artifact@v4
+        with:
+          name: run-output
+          path: out/

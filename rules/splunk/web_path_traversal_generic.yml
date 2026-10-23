@@ -1,0 +1,21 @@
+name: Path Traversal Sequences in Request URL
+id: a13f6d82-0c5e-4b79-9e27-d8c4b0f1a359
+version: 2
+date: '2022-08-01'
+author: Northwind Detection Engineering
+status: production
+type: Anomaly
+description: Detects directory traversal sequences in web request URLs.
+logsource: webserver
+search: |-
+  | tstats count min(_time) as firstTime max(_time) as lastTime from datamodel=Web where Web.url IN ("*../../../*", "*..%2f..%2f*", "*%2e%2e%2f*") Web.status IN (200, 500) by Web.src Web.dest Web.http_method Web.url Web.status
+  | `drop_dm_object_name("Web")`
+how_to_implement: Needs the Web data model. Many clients normalise the path before sending, so traversal in the logged URL is a strong signal.
+known_false_positives: Security scanners and badly written crawlers.
+references:
+  - https://attack.mitre.org/techniques/T1190/
+cve: []
+mitre_attack_id:
+  - T1190
+inventory_products: []
+level: medium

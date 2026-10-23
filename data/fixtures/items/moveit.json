@@ -1,0 +1,31 @@
+{
+  "_note": "raw is a short paraphrase of the cited public report. recorded_extraction is what the LLM extraction step returns for it, saved so demos run offline. Version ranges are simplified for the demo.",
+  "raw": {
+    "source": "feed:google-threat-intel",
+    "id": "mandiant-moveit-2023-06-02",
+    "title": "Zero-Day Vulnerability in MOVEit Transfer Exploited for Data Theft",
+    "url": "https://cloud.google.com/blog/topics/threat-intelligence/zero-day-moveit-data-theft",
+    "published": "2023-06-02",
+    "text": "Mandiant saw wide exploitation of a zero-day in MOVEit Transfer, announced by Progress on 31 May 2023 as CVE-2023-34362. The earliest evidence of exploitation is 27 May 2023. Attackers deployed the LEMURLOOT web shell under names that imitate the legitimate human.aspx, seen as human2.aspx and _human2.aspx in the MOVEit Transfer web root. POST requests to guestaccess.aspx before web shell use point to SQL injection. In some cases data theft happened minutes after the web shell was placed."
+  },
+  "recorded_extraction": {
+    "cves": ["CVE-2023-34362"],
+    "products": ["MOVEit Transfer"],
+    "affected": [
+      {"product": "MOVEit Transfer", "introduced": "2021.0.0", "fixed": "2021.0.6"},
+      {"product": "MOVEit Transfer", "introduced": "2021.1.0", "fixed": "2021.1.4"},
+      {"product": "MOVEit Transfer", "introduced": "2022.0.0", "fixed": "2022.0.4"},
+      {"product": "MOVEit Transfer", "introduced": "2022.1.0", "fixed": "2022.1.5"},
+      {"product": "MOVEit Transfer", "introduced": "2023.0.0", "fixed": "2023.0.1"}
+    ],
+    "iocs": {
+      "uri": ["/human2.aspx", "/_human2.aspx"],
+      "dir": ["\\MOVEit Transfer\\wwwroot\\", "\\MOVEitTransfer\\wwwroot\\"]
+    },
+    "techniques": ["T1190", "T1505.003"],
+    "first_exploited": "2023-05-27",
+    "references": [
+      "https://community.progress.com/s/article/MOVEit-Transfer-Critical-Vulnerability-31May2023"
+    ]
+  }
+}

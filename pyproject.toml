@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "intel-to-rule"
+version = "0.1.0"
+description = "Turns new threat intelligence into reviewed detection rule changes (pull requests), not direct SIEM edits."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+dependencies = ["PyYAML>=6.0"]
+
+[project.optional-dependencies]
+# Sigma -> Splunk SPL / Elastic Lucene conversion
+sigma = [
+  "pysigma>=0.11",
+  "pysigma-backend-splunk>=1.0",
+  "pysigma-backend-elasticsearch>=1.1",
+]
+# LLM-assisted extraction and rule review
+llm = ["anthropic>=0.40"]
+
+[project.scripts]
+intel-to-rule = "intel_to_rule.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]

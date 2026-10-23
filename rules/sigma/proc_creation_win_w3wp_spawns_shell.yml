@@ -1,0 +1,28 @@
+title: IIS Worker Process Spawning a Shell
+id: 7c1e5a90-2d4b-4e8f-b3a6-9f0d6c1e7a22
+status: stable
+description: Detects cmd.exe or PowerShell started by the IIS worker process, which indicates web shell activity.
+references:
+  - https://attack.mitre.org/techniques/T1505/003/
+author: Northwind Detection Engineering
+date: 2022-03-14
+tags:
+  - attack.persistence
+  - attack.t1505.003
+  - attack.execution
+  - attack.t1059
+  - product.windows_iis
+logsource:
+  category: process_creation
+  product: windows
+detection:
+  selection:
+    ParentImage|endswith: '\w3wp.exe'
+    Image|endswith:
+      - '\cmd.exe'
+      - '\powershell.exe'
+      - '\pwsh.exe'
+  condition: selection
+falsepositives:
+  - Rare legacy applications that call cmd.exe from IIS
+level: high

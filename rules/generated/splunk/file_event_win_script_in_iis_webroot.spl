@@ -1,0 +1,1 @@
+TargetFilename="*\\inetpub\\wwwroot\\*" TargetFilename IN ("*.aspx", "*.ashx", "*.asmx") NOT Image="*\\msdeploy.exe"

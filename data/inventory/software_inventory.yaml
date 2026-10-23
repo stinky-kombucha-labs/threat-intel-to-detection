@@ -1,0 +1,85 @@
+# Fictional inventory for "Northwind Logistics", a made-up company. No real data.
+# log_sources lists the log categories that actually reach the SIEM for each asset.
+# Categories: webserver, proxy, file_event, process_creation, vpn, firewall, auth.
+company: Northwind Logistics
+assets:
+  - id: moveit_transfer
+    vendor: Progress
+    product: MOVEit Transfer
+    version: "2022.1.3"
+    aliases: [moveit]
+    exposure: internet
+    criticality: high
+    hosts: [mft01.nw.example]
+    log_sources: [webserver, file_event, process_creation]
+
+  - id: ivanti_connect_secure
+    vendor: Ivanti
+    product: Ivanti Connect Secure
+    version: "22.3R1"
+    aliases: [Connect Secure, Pulse Connect Secure, Pulse Secure]
+    exposure: internet
+    criticality: high
+    hosts: [vpn01.nw.example, vpn02.nw.example]
+    log_sources: [webserver, vpn]
+
+  - id: citrix_netscaler_gateway
+    vendor: Citrix
+    product: NetScaler Gateway
+    version: "13.1-48.47"
+    aliases: [NetScaler ADC, Citrix ADC, Citrix Gateway]
+    exposure: internet
+    criticality: high
+    hosts: [gw01.nw.example]
+    # Appliance syslog only. No WAF or reverse proxy logs, so HTTP requests to the appliance are invisible.
+    log_sources: [vpn, firewall]
+
+  - id: exchange_server
+    vendor: Microsoft
+    product: Exchange Server
+    version: "2019 CU13"
+    aliases: [Microsoft Exchange]
+    exposure: internet
+    criticality: critical
+    hosts: [mail01.nw.example]
+    log_sources: [webserver, process_creation, file_event, auth]
+
+  - id: tomcat
+    vendor: Apache
+    product: Apache Tomcat
+    version: "9.0.80"
+    aliases: [Tomcat]
+    exposure: internal
+    criticality: medium
+    hosts: [app03.nw.example, app04.nw.example]
+    log_sources: [webserver, process_creation]
+
+  - id: confluence
+    vendor: Atlassian
+    product: Confluence Data Center
+    version: "8.5.4"
+    aliases: [Confluence]
+    exposure: internal
+    criticality: medium
+    hosts: [wiki01.nw.example]
+    log_sources: [webserver]
+
+  - id: veeam
+    vendor: Veeam
+    product: Veeam Backup & Replication
+    version: "12.1"
+    aliases: [Veeam]
+    exposure: internal
+    criticality: high
+    hosts: [bkp01.nw.example]
+    log_sources: [process_creation, auth]
+
+  - id: panos
+    vendor: Palo Alto Networks
+    product: PAN-OS
+    version: "10.2.7"
+    aliases: [GlobalProtect]
+    exposure: internet
+    criticality: high
+    hosts: [fw01.nw.example]
+    log_sources: [firewall, vpn]

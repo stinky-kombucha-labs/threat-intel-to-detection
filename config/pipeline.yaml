@@ -1,0 +1,39 @@
+# Pipeline settings. Paths are relative to the repository root.
+inventory: data/inventory/software_inventory.yaml
+state_db: .state/seen.sqlite
+fixtures_dir: data/fixtures
+
+rules:
+  # Where existing rules live. Each directory holds one native format.
+  # Remove a format you do not use. The pipeline edits rules in their own format.
+  dirs:
+    splunk: rules/splunk
+    sigma: rules/sigma
+    elastic: rules/elastic
+  # Format for brand-new rules when no existing rule can be extended.
+  # A Splunk-only team sets this to "splunk" and can delete the sigma and elastic dirs above.
+  primary_format: splunk
+  # SPL and Lucene queries generated from Sigma rules (never edited by hand, never read as input).
+  generated_dir: rules/generated
+
+email:
+  to: detection-engineering@northwind.example
+  from: intel-to-rule@northwind.example
+
+pr:
+  base: main
+  branch_prefix: intel-to-rule
+  labels: [auto-generated, needs-review]
+
+sources:
+  nvd:
+    enabled: true          # set NVD_API_KEY for 50 requests per 30 s instead of 5
+  feeds:
+    - { name: cisa-advisories, url: "https://www.cisa.gov/cybersecurity-advisories/all.xml" }
+    - { name: dfir-report, url: "https://thedfirreport.com/feed/" }
+    - { name: volexity, url: "https://www.volexity.com/blog/feed/" }
+    - { name: rapid7, url: "https://blog.rapid7.com/rss/" }
+    - { name: google-threat-intel, url: "https://cloud.google.com/blog/topics/threat-intelligence/rss" }
+  reddit:
+    enabled: true
+    subreddits: [blueteamsec, netsec, sysadmin]

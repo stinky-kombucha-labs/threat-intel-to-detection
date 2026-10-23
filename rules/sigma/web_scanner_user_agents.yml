@@ -1,0 +1,24 @@
+title: Web Vulnerability Scanner User Agent
+id: c4a8e1d7-3b92-4f6a-a05d-6e8b1f2c9d03
+status: stable
+description: Detects well-known scanner user agents in web server logs.
+references:
+  - https://attack.mitre.org/techniques/T1595/002/
+author: Northwind Detection Engineering
+date: 2022-04-20
+tags:
+  - attack.reconnaissance
+  - attack.t1595.002
+logsource:
+  category: webserver
+detection:
+  selection:
+    cs-user-agent|contains:
+      - 'sqlmap'
+      - 'nikto'
+      - 'nuclei'
+      - 'masscan'
+  condition: selection
+falsepositives:
+  - Authorised vulnerability scans from the security team
+level: low
